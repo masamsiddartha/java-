@@ -1,0 +1,136 @@
+1) 
+ import java.util.Scanner;
+
+public class DaysConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of days: ");
+        int days = scanner.nextInt();
+
+        int years = days / 365;
+        int weeks = (days % 365) / 7;
+        int remainingDays = (days % 365) % 7;
+
+        System.out.println("No. of years: " + years);
+        System.out.println("No. of weeks: " + weeks);
+        System.out.println("No. of days: " + remainingDays);
+
+        scanner.close();
+    }
+}
+
+
+
+2)
+public class StudentUsersCalculator {
+    public static void main(String[] args) {
+        int totalUsers = 856;
+        int staffUsers = 126;
+        
+         int nonTeachingStaff = staffUsers / 3;
+        
+         int studentUsers = totalUsers - staffUsers - nonTeachingStaff;
+        
+        System.out.println("Student Users: " + studentUsers);
+    }
+}
+
+3)import java.util.Scanner;
+
+public class FactorCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        int number = scanner.nextInt();
+        System.out.print("Enter the value of N: ");
+        int n = scanner.nextInt();
+
+        int factors = 0;
+        int nthFactor = 0;
+
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                factors++;
+                if (factors == n) {
+                    nthFactor = i;
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Number of factors = " + factors);
+        System.out.println(n + "th factor of " + number + " = " + nthFactor);
+    }
+}
+
+
+
+4)
+public class PrimeNumbers {
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int N = 3;
+        int count = 0;
+        int num = 2;
+
+        while (count < N) {
+            if (isPrime(num)) {
+                count++;
+            }
+            num++;
+        }
+
+        System.out.println(N + "th Prime number is " + (num - 1));
+
+        System.out.print(N + " prime numbers after " + (num - 1) + " are: ");
+        count = 0;
+        while (count < N) {
+            if (isPrime(num)) {
+                System.out.print(num + " ");
+                count++;
+            }
+            num++;
+        }
+    }
+}
+5)
+import java.util.ArrayList;
+import java.util.List;
+
+public class PerfectSquaresWithDigitSumLessThanTen {
+    public static void main(String[] args) {
+        int lowerRange = 1;
+        int upperRange = 40;
+        
+        List<Integer> perfectSquares = new ArrayList<>();
+        
+        for (int i = lowerRange; i <= upperRange; i++) {
+            int squareRoot = (int) Math.sqrt(i);
+            if (squareRoot * squareRoot == i) {
+                int sum = 0;
+                int num = i;
+                while (num > 0) {
+                    sum += num % 10;
+                    num /= 10;
+                }
+                if (sum < 10) {
+                    perfectSquares.add(i);
+                }
+            }
+        }
+        
+        System.out.println(perfectSquares);
+    }
+}
