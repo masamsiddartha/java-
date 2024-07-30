@@ -1,0 +1,166 @@
+1)
+class FibonacciRunnable implements Runnable {
+    private int n;
+
+     public FibonacciRunnable(int n) {
+        this.n = n;
+    }
+
+     @Override
+    public void run() {
+        generateFibonacciSeries(n);
+    }
+
+     private void generateFibonacciSeries(int n) {
+        int a = 0, b = 1, next;
+        System.out.print("Fibonacci series up to " + n + " terms: ");
+        for (int i = 1; i <= n; i++) {
+            System.out.print(a + " ");
+            next = a + b;
+            a = b;
+            b = next;
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+         int n = 10;
+
+         FibonacciRunnable fibonacciRunnable = new FibonacciRunnable(n);
+
+         Thread thread = new Thread(fibonacciRunnable);
+
+         thread.start();
+    }
+}
+
+2)
+ class PrimeChecker implements Runnable {
+    private int number;
+
+     public PrimeChecker(int number) {
+        this.number = number;
+    }
+
+     @Override
+    public void run() {
+        if (isPrime(number)) {
+            System.out.println(number + " is a prime number.");
+        } else {
+            System.out.println(number + " is not a prime number.");
+        }
+    }
+
+     private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+         int[] numbersToCheck = {2, 3, 4, 17, 20, 23, 24, 29, 30, 31};
+
+         for (int number : numbersToCheck) {
+            PrimeChecker primeChecker = new PrimeChecker(number);
+            Thread thread = new Thread(primeChecker);
+            thread.start();
+        }
+    }
+}
+3)import java.util.Scanner;
+
+public class SumArrayWithExceptionHandling {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+         System.out.print("Enter the number of elements: ");
+        int N = scanner.nextInt();
+
+         int[] numbers = new int[N];
+
+         System.out.println("Enter the elements:");
+        for (int i = 0; i < N; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+         int sum = 0;
+        try {
+            for (int i = 0; i <= N; i++) {  
+                sum += numbers[i];
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Exception caught: " + e);
+            System.out.println("Loop variable went beyond the array size.");
+        }
+
+         System.out.println("Sum of the elements (within bounds): " + sum);
+    }
+}
+
+4)
+class Box {
+    double width;
+    double height;
+    double depth;
+
+     Box() {
+        width = 1.0;
+        height = 1.0;
+        depth = 1.0;
+    }
+
+     double volume() {
+        return width * height * depth;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+         Box myBox = new Box();
+
+         double vol = myBox.volume();
+
+         System.out.println("Volume of the box is: " + vol);
+    }
+}
+5)
+
+public class MultiCatchExample {
+    public static void main(String[] args) {
+         int[] numbers = {1, 2, 3, 4, 5};
+
+         int a = 10;
+        int b = 0;
+        String str = null;
+
+        try {
+             int result = a / b;
+            System.out.println("Result: " + result);
+
+             int invalidIndex = numbers[10];
+            System.out.println("Element at index 10: " + invalidIndex);
+
+             int length = str.length();
+            System.out.println("Length of string: " + length);
+
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e) {
+             System.out.println("Exception caught: " + e);
+        }
+
+         System.out.println("Program execution continues...");
+    }
+}
+
+
+
+
